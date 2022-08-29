@@ -41,7 +41,7 @@ if (phones.length===0) {
         const{brand,phone_name,image,slug}=phone
 
         const div = document.createElement('div');
-        div.classList.add('col')
+        div.classList.add('col-lg-4')
 
         div.innerHTML = `
         <div class="card">
