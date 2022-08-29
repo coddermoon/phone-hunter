@@ -1,4 +1,5 @@
 // add dependencies
+const warningDiv = document.getElementById('warning');
 
 const row = document.getElementById('row')
 const searchInput = document.getElementById('searchInput')
@@ -13,6 +14,15 @@ const loadPhone = async (searchText)=>{
 }
 
 const displayPhones = (phones)=>{
+   phones = phones.slice(0,9)
+
+//    display notfound msg
+if (phones.length===0) {
+    warningDiv.classList.remove('d-none')
+}else{
+    warningDiv.classList.add('d-none')  
+}
+
    
     phones.forEach(phone => {
        
@@ -34,14 +44,27 @@ const displayPhones = (phones)=>{
         
         `
         row.appendChild(div)
+        toggleSpinner(false)
 
     });
 }
 
 searchInput.addEventListener('input',()=>{
+    toggleSpinner(true)
     row.innerHTML=''
    const searchText = searchInput.value
-
+   
    loadPhone(searchText)
 })
 
+
+// loadewr
+
+const toggleSpinner = (isLoading)=>{
+    const spinner = document.getElementById('spinner');
+    if (isLoading) {
+       spinner.classList.remove('d-none') 
+    }else{
+        spinner.classList.add('d-none')  
+    }
+}
